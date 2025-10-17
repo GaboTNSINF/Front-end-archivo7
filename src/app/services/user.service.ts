@@ -7,7 +7,7 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://mi-app-backend-ao07.onrender.com';
+  private apiUrl = 'https://mi-app-backend-ao07.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
