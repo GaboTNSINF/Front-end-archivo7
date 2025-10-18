@@ -80,7 +80,7 @@
      </div>
 
      <div class="users-grid">
-       <div *ngFor="let user of users" class="user-card" [class.inactive]="!user.activo">
+       <div *ngFor="let user of users; trackBy: trackByUserId" class="user-card" [class.inactive]="!user.activo">
          <div class="user-header">
            <h3>{{ user.nombreCompleto }}</h3>
            <span class="status-badge" [class.active]="user.activo" [class.inactive]="!user.activo">
@@ -91,7 +91,6 @@
          <div class="user-details">
            <p><strong>Email:</strong> {{ user.email }}</p>
            <p *ngIf="user.edad"><strong>Edad:</strong> {{ user.edad }} años</p>
-           <p *ngIf="user.fechaCreacion"><strong>Fecha Creación:</strong> {{ user.fechaCreacion }}</p>
            <p><strong>Registrado:</strong> {{ user.createdAt | date:'short' }}</p>
          </div>
 
@@ -103,7 +102,7 @@
            </button>
 
            <button
-             (click)="deleteUser(user._id!)"
+             (click)="deleteUser(user)"
              class="btn-danger">
              Eliminar
            </button>

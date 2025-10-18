@@ -4,7 +4,6 @@ export interface User {
   email: string;
   edad?: number;
   activo?: boolean;
-  fechaCreacion?: string;
   createdAt?: string;
   updatedAt?: string;
 }

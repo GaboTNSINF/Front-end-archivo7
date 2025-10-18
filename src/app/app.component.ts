@@ -81,9 +81,16 @@ export class AppComponent implements OnInit {
   }
 
   // Eliminar usuario
-  deleteUser(id: string) {
-    if (!confirm('¿Estás seguro de eliminar este usuario?')) return;
+  deleteUser(userToDelete: User) {
+    if (!userToDelete._id) {
+      this.message = 'Error: ID de usuario no válido';
+      console.error('Intento de eliminar un usuario sin ID.');
+      return;
+    }
 
+    if (!confirm(`¿Estás seguro de eliminar a ${userToDelete.nombreCompleto}?`)) return;
+
+    const id = userToDelete._id;
     this.userService.deleteUser(id).subscribe({
       next: () => {
         this.users = this.users.filter(user => user._id !== id);
@@ -115,5 +122,10 @@ export class AppComponent implements OnInit {
         this.message = 'Error actualizando usuario';
       }
     });
+  }
+
+  // Optimizar renderizado de la lista de usuarios
+  trackByUserId(index: number, user: User): string {
+    return user._id!;
   }
 }
